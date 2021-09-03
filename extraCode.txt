@@ -1,0 +1,38 @@
+// let replaceValueIndex = [];
+//         arrayData.map((item,index)=>{
+//             // console.log("Item",item,reEmail,"Index");
+//             if(item.match('user')){
+//                 replaceValueIndex.push(index);
+//             }else if(item.match("pass")){
+//                 replaceValueIndex.push(index);
+//             }else if(item.match("from")){
+//                 replaceValueIndex.push(index);
+//             }
+//         });
+//         replaceValueIndex.map(idx=>{
+//             console.log("I am calling",idx)
+//             arrayData.splice(idx,0,`      user:"${email}"`).join("\n");
+//             fs.createWriteStream(filePath, arrayData,(err)=>{
+//                 if(err) return console.log(err)
+//                 console.log(`Done ${idx}`);
+//             });
+//         });
+
+
+//         const reEmail = new RegExp('^.*' + 'user' + '.*$', 'gm');  
+//         const reFrom = new RegExp('^.*' + 'from' + '.*$', 'gm');  
+//         const rePassword = new RegExp('^.*' + 'pass' + '.*$', 'gm');  
+//         const fileDataEmail =  fileData.replace(reEmail,`      user:"${email}",`);
+//         const fileDataPassword =  fileData.replace(rePassword,`      pass:"${password}",`);
+//         const fileDatafrom = fileData.replace(reFrom,`    from:"${email}",`);  
+//     // fs.writeFile(file,fileDataPassword,{flag:"r+"},(err)=>{
+//         //     if(err) return console.log(err);
+//         //     console.log("I am done 2")
+//         // });       
+//         // var logger = fs.createWriteStream(filePath, {
+//         //     flags: 'a'
+//         //   });
+//         // logger.write(fileDataEmail);
+//         // logger.write(fileDataPassword);
+//         // logger.write(fileDatafrom);
+SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8

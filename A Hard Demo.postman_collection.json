@@ -1,0 +1,451 @@
+{
+	"info": {
+		"_postman_id": "4853f9b3-52e3-45a1-930d-9f0427e2259f",
+		"name": "A Hard Demo",
+		"description": "This is demo of nodeJS project write in improve  the nodeJS.\n\nNote : You have to password every data in json format, Only files or images are accept in multipart/form (Form).",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "For developer",
+			"item": [
+				{
+					"name": "change Send Email Details",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"mh.idea2code@gmail.com\",\n    \"password\":\"Idea2code@mh\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/changeSendEmailDetails",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"changeSendEmailDetails"
+							]
+						},
+						"description": "API is used to change send mail function email related details...\nLike email and password \nThis one for development and for admin as well.\nRequired thing are \nEmail and password (Must be in json.)\nhere is no validation from backend for required related.\nSo you have to carefully add both value..\nThanks"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user/all",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"all"
+							]
+						},
+						"description": "This one just for development , for get the info of all user to verify some things or may be use full on some other stuff."
+					},
+					"response": []
+				}
+			],
+			"description": "In this folder\nOnly developer related API available\nAll the APIs in this folder is  not used in APP or web"
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"jay \",\n    \"email\":\"  jay@gmail.com\",\n    \"password\":\"Jay1234 \",\n    \"confimPassword\":\"Jay1234 \",\n    \"address\":\"Amroli,surat\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						},
+						"description": "This one is registration API for demo app\nUsername : is Required and must be 3 char long\nEmail : is Required and must be valid email\nPassword : is Required and must be 6 char long\nconfimPassword : is Requires and must be same as password \nFor registration some IMP info is taken."
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"jc.idea2code@gmail.com\",\n    \"password\":\"jenish123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						},
+						"description": "This one is login API over there you can find user token for authenticate that user.\nEmail : must be register user mail\nPassword : must be same as register time password."
+					},
+					"response": []
+				},
+				{
+					"name": "Upload avatar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3ZlclBpY3R1cmUiOltdLCJmb2xsb3dlcnMiOltdLCJpc0FkbWluIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsIl9pZCI6IjYxMmY2MmNjN2MzYTMzYTliNWVkMDNjOCIsInVzZXJuYW1lIjoibWFnYW4iLCJlbWFpbCI6Im1hZ2FuQGdtYWlsLmNvbSIsImNyZWF0ZWRBdCI6IjIwMjEtMDktMDFUMTE6MjM6NTYuNjYzWiIsInVwZGF0ZWRBdCI6IjIwMjEtMDktMDFUMTE6MjM6NTYuNjYzWiIsImlhdCI6MTYzMDQ5NTQ0NX0.Me0xd3Y-kEJeDtTD8bEJRvY7aeMqDg1SKSjfu9eGmGs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/home/user/Downloads/images/download2.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/avatar",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"avatar"
+							]
+						},
+						"description": "API is used to upload images \nThis one is only accept multipart/form"
+					},
+					"response": []
+				},
+				{
+					"name": "Upload multi avatar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3ZlclBpY3R1cmUiOltdLCJmb2xsb3dlcnMiOltdLCJpc0FkbWluIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsIl9pZCI6IjYxMmY2Mjk2N2MzYTMzYTliNWVkMDNiZSIsInVzZXJuYW1lIjoicmFtdSIsImVtYWlsIjoicmFtdUBnbWFpbC5jb20iLCJjcmVhdGVkQXQiOiIyMDIxLTA5LTAxVDExOjIzOjAyLjY2NFoiLCJ1cGRhdGVkQXQiOiIyMDIxLTA5LTAxVDExOjIzOjAyLjY2NFoiLCJpYXQiOjE2MzA0OTUzOTN9.bG0q0ii-9Pj613y7nM-u4JNZY2ycyNeDspj-t7g6kOc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": [
+										"/home/user/Downloads/images/carry.jpeg",
+										"/home/user/Downloads/images/download.jpeg",
+										"/home/user/Downloads/images/download1.jpeg"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/multiAvatar",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"multiAvatar"
+							]
+						},
+						"description": "API is used to upload multiple images \nThis one is only accept multipart/form"
+					},
+					"response": []
+				},
+				{
+					"name": "Get userInfo",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3ZlclBpY3R1cmUiOltdLCJmb2xsb3dlcnMiOltdLCJpc0FkbWluIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsIl9pZCI6IjYxMmY2NzZjNzliOTBlYjBlZGZlZjRmOCIsInVzZXJuYW1lIjoiamVuaXNoIiwiZW1haWwiOiJqZW5pc2hAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTIkSDBJYjhzLjI3NGVBUlFjdUhmVUpGLkd5QlhPRHRZaVMuQ1ZxeU53UWJweUNmc2hSSDgzVTIiLCJjcmVhdGVkQXQiOiIyMDIxLTA5LTAxVDExOjQzOjQwLjgwMVoiLCJ1cGRhdGVkQXQiOiIyMDIxLTA5LTAxVDExOjQzOjQwLjgwMVoiLCJpYXQiOjE2MzA0OTY2NTF9.PJr47zEnK6CS6eSULoSF5_i8VKSELp4YnCPFMUuG1gE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user/userInfo",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"userInfo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3ZlclBpY3R1cmUiOltdLCJmb2xsb3dlcnMiOltdLCJpc0FkbWluIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsIm90cCI6bnVsbCwiX2lkIjoiNjEyZjY3NmM3OWI5MGViMGVkZmVmNGY4IiwidXNlcm5hbWUiOiJqZW5pc2giLCJlbWFpbCI6ImplbmlzaEBnbWFpbC5jb20iLCJjcmVhdGVkQXQiOiIyMDIxLTA5LTAxVDExOjQzOjQwLjgwMVoiLCJ1cGRhdGVkQXQiOiIyMDIxLTA5LTAyVDA0OjEzOjE2LjAwNFoiLCJpYXQiOjE2MzA1NzU5MDJ9.GlZFtQ97yIajIbAYeJ-qCdfTA6Um7LLU9xY2J8MYDto",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"desc\":\"cxsdg fgfveb rbfdgbn rbfb\",\n    \"address\":\"Magabkaka dwhvdhvdsfdfd\",\n    \"email\":\"ng.idea2code@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/user/update",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"update"
+							]
+						},
+						"description": "This API is used to update user info by just passing token\n\nNothing is required."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3ZlclBpY3R1cmUiOltdLCJmb2xsb3dlcnMiOltdLCJpc0FkbWluIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsIl9pZCI6IjYxMmY3MWE1YTBlZWM0YzYyMjlkMWQ1MiIsInVzZXJuYW1lIjoiamF5IiwiZW1haWwiOiJqYXlAZ21haWwuY29tIiwiY3JlYXRlZEF0IjoiMjAyMS0wOS0wMVQxMjoyNzoxNy44OTBaIiwidXBkYXRlZEF0IjoiMjAyMS0wOS0wMVQxMjoyNzoxNy44OTBaIiwiaWF0IjoxNjMwNTU0MzA4fQ.RUsO31eUAQKkwyUmjCgVXqKqI-KzfXybmrIb5qu-pcs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/user/delete",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"delete"
+							]
+						},
+						"description": "API is use full for delete user account or data by just user access token"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete multiple users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3ZlclBpY3R1cmUiOlsicHVibGljLzE2MzA0OTQ5MTk4NjQtY2FycnkuanBlZyIsInB1YmxpYy8xNjMwNDk0OTE5ODY1LWRvd25sb2FkLmpwZWciLCJwdWJsaWMvMTYzMDQ5NDkxOTg2Ny1kb3dubG9hZDEuanBlZyJdLCJmb2xsb3dlcnMiOltdLCJpc0FkbWluIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsIl9pZCI6IjYxMmY2MGI5N2M1NjYyYTcxN2UwNmI4ZSIsInVzZXJuYW1lIjoibmlyYXYiLCJlbWFpbCI6Im5pcmF2QGdtYWlsLmNvbSIsImNyZWF0ZWRBdCI6IjIwMjEtMDktMDFUMTE6MTU6MDUuMDk2WiIsInVwZGF0ZWRBdCI6IjIwMjEtMDktMDFUMTE6MTU6MzcuMTA1WiIsInByb2ZpbGVQaWN0dXJlIjoicHVibGljLzE2MzA0OTQ5MzcwOTMtZG93bmxvYWQtMy5qcGVnIiwiaWF0IjoxNjMwNDk1MTg4fQ.3on1Xa0izPj903DKiNq-Kb7unER3SnOz5rp7RnwIyRQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    \"612f60b97c5662a717e06b8e\",\"612f62677c3a33a9b5ed03b5\"\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/user/deleteMultiUser",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"deleteMultiUser"
+							]
+						},
+						"description": "With this API we can delete multiple users with all there info..."
+					},
+					"response": []
+				},
+				{
+					"name": "Change user password ",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3ZlclBpY3R1cmUiOltdLCJmb2xsb3dlcnMiOltdLCJpc0FkbWluIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsIl9pZCI6IjYxMmY2NzZjNzliOTBlYjBlZGZlZjRmOCIsInVzZXJuYW1lIjoiamVuaXNoIiwiZW1haWwiOiJqZW5pc2hAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTIkSDBJYjhzLjI3NGVBUlFjdUhmVUpGLkd5QlhPRHRZaVMuQ1ZxeU53UWJweUNmc2hSSDgzVTIiLCJjcmVhdGVkQXQiOiIyMDIxLTA5LTAxVDExOjQzOjQwLjgwMVoiLCJ1cGRhdGVkQXQiOiIyMDIxLTA5LTAxVDExOjQzOjQwLjgwMVoiLCJpYXQiOjE2MzA1NTU4ODh9.2evnR7mIM1bxItfs_kHP57ejjgzXZjJwMoivr8urYYs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"oldPassword\":\"jay123\",\n    \"newPassword\":\"jay123\",\n    \"confimPassword\":\"jay123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/user/changePassword",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"changePassword"
+							]
+						},
+						"description": "This API is used to user old password with new password \noldPassword : is Required and must be match with user old password.\nnewPassword : is Requires and is should be user new password which change with old password.\nconfimPassword :is Required and must be match with new password (Just for confirmation with user)."
+					},
+					"response": []
+				},
+				{
+					"name": "User forgot password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3ZlclBpY3R1cmUiOltdLCJmb2xsb3dlcnMiOltdLCJpc0FkbWluIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsIm90cCI6bnVsbCwiX2lkIjoiNjEyZjY3NmM3OWI5MGViMGVkZmVmNGY4IiwidXNlcm5hbWUiOiJqZW5pc2giLCJlbWFpbCI6ImplbmlzaEBnbWFpbC5jb20iLCJjcmVhdGVkQXQiOiIyMDIxLTA5LTAxVDExOjQzOjQwLjgwMVoiLCJ1cGRhdGVkQXQiOiIyMDIxLTA5LTAyVDA0OjEzOjE2LjAwNFoiLCJpYXQiOjE2MzA1NzU5MDJ9.GlZFtQ97yIajIbAYeJ-qCdfTA6Um7LLU9xY2J8MYDto",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"ng.idea2code@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/user/forgotPassword",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"forgotPassword"
+							]
+						},
+						"description": "API is used for forgot password \nEmail is only major requirement for this API\nOnce you got email then use that otp to reset you password by reset Password API."
+					},
+					"response": []
+				},
+				{
+					"name": "Reset user forgot password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3ZlclBpY3R1cmUiOltdLCJmb2xsb3dlcnMiOltdLCJpc0FkbWluIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsIm90cCI6bnVsbCwiX2lkIjoiNjEyZjY3NmM3OWI5MGViMGVkZmVmNGY4IiwidXNlcm5hbWUiOiJqZW5pc2giLCJlbWFpbCI6ImplbmlzaEBnbWFpbC5jb20iLCJjcmVhdGVkQXQiOiIyMDIxLTA5LTAxVDExOjQzOjQwLjgwMVoiLCJ1cGRhdGVkQXQiOiIyMDIxLTA5LTAyVDA0OjEzOjE2LjAwNFoiLCJpYXQiOjE2MzA1NzU5MDJ9.GlZFtQ97yIajIbAYeJ-qCdfTA6Um7LLU9xY2J8MYDto",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"otp\":3939,\n    \"newPassword\":\"jenish1234\",\n    \"confimPassword\":\"jenish1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/user/resetPassword",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"resetPassword"
+							]
+						},
+						"description": "API is used to reset user password by OTP that send using email.\notp = is Required and is must be same as you got otp on mail\nnewPassword  and confimPassword must be same"
+					},
+					"response": []
+				}
+			],
+			"description": "This folder contain user related all APIs \nlike login and register and etc..."
+		}
+	]
+}
