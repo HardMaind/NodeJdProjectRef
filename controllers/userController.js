@@ -5,15 +5,6 @@ const {userValidation}=require("../helper/validator");
 const {successResponce,deleteResponce,queryErrorRelatedResponse} = require("../helper/sendResponse");
 const { sendMail } = require("../helper/emailSender");
 
-// Get all the users
-const getUser = async (req,res,next)=>{
-    try {
-    const users = await User.find();    
-    successResponce(req,res,users)
-    } catch (error) {
-        next(error);
-    }
-}
 
 // Get single user by authenticate token (It's also possiable with params or else...)
 const getSingleUser = async (req,res,next)=>{
@@ -137,43 +128,25 @@ const resetUserPassword = async (req,res,next)=>{
     }
 }
 
-module.exports = {
-    getUser,getSingleUser,updateUser,deleteUser,deleteMultiUsers,
-    changePassword,forgotPassword,resetUserPassword}
+// Contact us or send feedBack related With mail
+const sendFeedBack =async (req,res,next)=>{
+    try {
+        const {email,cc,data} = req.body;    
+        const user  = await User.findById(req.user._id);
+        if(!user) return queryErrorRelatedResponse(req,res,400,"User not found.");
+        sendMail({
+            to:"mh.idea2code@gmail.com",
+            cc:cc,
+            sub:"Contact us",
+            html:`Sender Email : ${email}<br/>Sender Name : ${user.username}<br/> Subject : ${data}`
+        });
+        successResponce(req,res,"Send details successFully!!");
+    } catch (error) {
+        next(error);
+    }
+}
 
-    // const removeLines = (data, lines = []) => {
-    //     const fileDataEmail = `user:${email},`;        
-    //         return data
-    //             .split('\n')
-    //             .filter((item,index)=>{            
-    //                 const conditions = lines.indexOf(index) === -1;
-    //                     if(conditions == false){
-    //                     console.log("I am one time call...");
-    //                       item = fileDataEmail;               
-    //                     }else{
-    //                         item= item
-    //                     }
-    //                 })
-    //             .join('\n');
-    //     }    
-    // fs.readFile(filePath,function read(err,data){
-    //     if(err){
-    //         throw err;
-    //     }
-    // const fileData = data.toString();        
-    // fs.writeFile(filePath, removeLines(fileData, [7]), function(err) {
-    //         if (err) throw err;            
-    //     });              
-    // });
-    
-    
-    // const file = fs.openSync(filePath,'r+');        
-    // const reEmail = new RegExp('^.*' + 'user' + '.*$', 'gm');  
-    // const reFrom = new RegExp('^.*' + 'from' + '.*$', 'gm');  
-    // const rePassword = new RegExp('^.*' + 'pass' + '.*$', 'gm');  
-    // const fileDataEmail =  fileData.replace(reEmail,`      user:"${email}",`);
-    // const fileDataPassword =  fileData.replace(rePassword,`      pass:"${password}",`);
-    // const fileDatafrom = fileData.replace(reFrom,`    from:"${email}",`);        
-    // fs.writeFileSync(filePath,fileDataEmail);
-    // fs.writeFileSync(filePath,fileDataPassword);
-    // fs.writeFileSync(filePath,fileDatafrom);
+module.exports = {
+    getSingleUser,updateUser,deleteUser,deleteMultiUsers,
+    changePassword,forgotPassword,resetUserPassword,sendFeedBack}
+

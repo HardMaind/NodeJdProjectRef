@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema(
             v
           );
         },
-        message: (props) => `${props.value} is not a valid Email.`,
+        message: "email must be a valid email.",
       },
       trim:true
     },

@@ -6,7 +6,7 @@ const userValidation = (data)=>{
     const userSchema  = Joi.object({
         address:Joi.string().required(),
         desc:Joi.string().required(),
-        email:Joi.allow(),        
+        email:Joi.string().email().allow(),        
     });
     return userSchema.validate(data);
 }

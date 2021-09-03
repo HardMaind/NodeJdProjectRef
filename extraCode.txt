@@ -36,3 +36,12 @@
 //         // logger.write(fileDataPassword);
 //         // logger.write(fileDatafrom);
 SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8
+body("cc").isEmail().withMessage("cc must be have a valid email type.").normalizeEmail(),
+    (req, res) => {    
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            queryErrorRelatedResponse(req,res,400,String(errors.array().map(item=>item.msg).join('')));            
+            }
+            sendFeedBack
+        },
+    );

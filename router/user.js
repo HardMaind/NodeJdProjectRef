@@ -1,12 +1,8 @@
 const router = require("express").Router();
 const authenticUser = require("../helper/verifyAppUser");
-const { getUser ,getSingleUser,updateUser,deleteUser,
-    deleteMultiUsers, changePassword,forgotPassword,resetUserPassword} = require("../controllers/userController");
+const {getSingleUser,updateUser,deleteUser,
+    deleteMultiUsers, changePassword,forgotPassword,resetUserPassword,sendFeedBack} = require("../controllers/userController");
 
-
-
-// // Get all users
-router.get("/all",getUser);
 
 // // Get single user
 router.get("/userInfo",authenticUser,getSingleUser);
@@ -27,6 +23,9 @@ router.patch("/changePassword",authenticUser,changePassword);
 router.patch("/forgotPassword",authenticUser,forgotPassword);
 
 // // Reset user password by otp send with email
-router.post("/resetPassword",authenticUser,resetUserPassword)
+router.post("/resetPassword",authenticUser,resetUserPassword);
+
+// // Contact us
+router.post("/contactUs",authenticUser,sendFeedBack);
 module.exports = router;
 
