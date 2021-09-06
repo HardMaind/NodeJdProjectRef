@@ -26,7 +26,8 @@ const userSchema = new mongoose.Schema(
         },
         message: "email must be a valid email.",
       },
-      trim:true
+      trim:true,
+      lowercase: true,
     },
     password: {
       type: String,
@@ -117,7 +118,7 @@ userSchema.methods.toJSON = function () {
   const userObj = user.toObject();
   delete userObj.__v;
   delete userObj.password;
-  delete userObj.otp;
+  // delete userObj.otp;
   // //Assign values
   // if (userObj.profilePicture) {
   //   userObj.profilePicture = process.env.BASE_URL + userObj.profilePicture;

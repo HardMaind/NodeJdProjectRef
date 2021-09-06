@@ -4,8 +4,6 @@ const User  = require("../Model/User");
 const {singleFileUpload, multiFileUpload} =require("../helper/imageUpload");
 const {successResponceOfAvatar,queryErrorRelatedResponse} = require("../helper/sendResponse");
 const deleteFiles = require("../helper/deletefiles");
-const path = require("path");
-const fs = require("fs");
 
 // Here is your server running URL
 const serverUrl  = "http://localhost:5051/";

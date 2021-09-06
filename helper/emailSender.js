@@ -12,7 +12,7 @@ const sendMail = (data) => {
     },
   });
   const mailOptions = {
-    from: "mh.idea2code@gmail.com",
+    from:data.from,
     to: data.to,
     subject: data.sub,
     html: data.html,

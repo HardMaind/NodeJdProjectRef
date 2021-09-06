@@ -4,7 +4,16 @@ const bcrypt = require("bcrypt");
 const {userValidation}=require("../helper/validator"); 
 const {successResponce,deleteResponce,queryErrorRelatedResponse} = require("../helper/sendResponse");
 const { sendMail } = require("../helper/emailSender");
+const fs = require("fs");
+const path = require("path");
 
+// File path that store email details
+const filePath =path.join(__dirname,"../helper/emailSender.js");
+const readFile = fs.readFileSync(filePath);
+// Convet buff into string
+const fileData = readFile.toString();
+// Get email id of email file deatils
+const emailOfFileIs =fileData.match(new RegExp('^.*' + 'user' + '.*$', 'gm')).toString().trim().replace("user: ","");
 
 // Get single user by authenticate token (It's also possiable with params or else...)
 const getSingleUser = async (req,res,next)=>{
@@ -87,19 +96,20 @@ const changePassword  = async (req,res,next)=>{
 // Forgot user password with nodemailder
 const forgotPassword = async (req,res,next)=>{
     try {
-        const {email} = req.body
-        const user = await User.findOne({email});
-        if(!user) return queryErrorRelatedResponse(req,res,400,"Email is not registered at...");        
+        const {cc,email} = req.body
+        const user = await User.findOne({email,_id:req.user._id});
+        if(!user) return queryErrorRelatedResponse(req,res,400,"Email is not registered at or may be something wrong.");        
         const otp = Math.floor(1000 + Math.random() * 9000);           
-        const expireOtpTime =Date.now() + 36000; 
+        const expireOtpTime =Date.now() + 360000; 
         user.otp = otp;
         user.expireOtpTime = expireOtpTime;
         await user.save();
         sendMail({
+            from:emailOfFileIs,
             to: req.body.email,
-            cc: "",
+            cc: cc,
             sub: "Forgot Password",
-            html:`You One Time Password  is ${otp} and expire in ${new Date(expireOtpTime).toString()}.`,
+            html:` You One Time Password  is : ${otp}<br/> Your OTP code is expire in : 5 minutes (${new Date(expireOtpTime).toString()}).`, //${new Date(expireOtpTime).toString()}.(In 5 min)
         });
         successResponce(req,res,"Please check you mail. (If you not get then check over spam.)");
     } catch (error) {        
@@ -111,7 +121,7 @@ const forgotPassword = async (req,res,next)=>{
 const resetUserPassword = async (req,res,next)=>{
     try {
         const {otp,newPassword,confimPassword} = req.body;
-        const user = await User.findOne({_id:req.user._id,otp:otp});
+        const user = await User.findOne({_id:req.user._id,otp});
         if(!user) return queryErrorRelatedResponse(req,res,400,"OTP is wrong!!");
         if(newPassword !== confimPassword){
             return queryErrorRelatedResponse(req,res,401,"Password did not match.");
@@ -129,19 +139,31 @@ const resetUserPassword = async (req,res,next)=>{
 }
 
 // Contact us or send feedBack related With mail
-const sendFeedBack =async (req,res,next)=>{
-    try {
-        const {email,cc,data} = req.body;    
+const sendFeedBack =async (req,res,next)=>{ 
+    try {        
+        const {cc,data} = req.body;    
         const user  = await User.findById(req.user._id);
-        if(!user) return queryErrorRelatedResponse(req,res,400,"User not found.");
-        sendMail({
-            to:"mh.idea2code@gmail.com",
+        if(!user) return queryErrorRelatedResponse(req,res,400,"User not found.");                
+        // if(!req.file) return queryErrorRelatedResponse(req,res,400,"File dose not found.");
+        let attachments;
+        if(req.file){
+         attachments={filename:req.file.filename,content: req.file.buffer,contentType:req.file.mimetype};
+        }        
+        let mailData = {
+            from:user.email,
+            to:emailOfFileIs,
             cc:cc,
             sub:"Contact us",
-            html:`Sender Email : ${email}<br/>Sender Name : ${user.username}<br/> Subject : ${data}`
-        });
+            html:`Sender Email : ${user.email}<br/>Sender Name : ${user.username}<br/> Subject : ${data}`,
+        }
+        if(attachments !== undefined || null){
+            const pair  = {attachments};
+            mailData =  {...mailData,...pair};
+        }
+        sendMail(mailData);
         successResponce(req,res,"Send details successFully!!");
     } catch (error) {
+        console.log(error,"Error");
         next(error);
     }
 }

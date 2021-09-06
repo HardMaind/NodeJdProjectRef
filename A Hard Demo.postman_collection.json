@@ -42,13 +42,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/user/all",
+							"raw": "{{base_url}}/allUsers",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"user",
-								"all"
+								"allUsers"
 							]
 						},
 						"description": "This one just for development , for get the info of all user to verify some things or may be use full on some other stuff."
@@ -68,7 +67,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"username\":\"jay \",\n    \"email\":\"  jay@gmail.com\",\n    \"password\":\"Jay1234 \",\n    \"confimPassword\":\"Jay1234 \",\n    \"address\":\"Amroli,surat\"\n}",
+							"raw": "{\n    \"username\":\"jay \",\n    \"email\":\"  ja0ygmail.com\",\n    \"password\":\"Jay1234 \",\n    \"confimPassword\":\"Jay1234 \",\n    \"address\":\"Amroli,surat\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -96,7 +95,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\":\"jc.idea2code@gmail.com\",\n    \"password\":\"jenish123\"\n}",
+							"raw": "{\n    \"email\":\"jay@gmail.com\",\n    \"password\":\"Jay1234\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -233,7 +232,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3ZlclBpY3R1cmUiOltdLCJmb2xsb3dlcnMiOltdLCJpc0FkbWluIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsIm90cCI6bnVsbCwiX2lkIjoiNjEyZjY3NmM3OWI5MGViMGVkZmVmNGY4IiwidXNlcm5hbWUiOiJqZW5pc2giLCJlbWFpbCI6ImplbmlzaEBnbWFpbC5jb20iLCJjcmVhdGVkQXQiOiIyMDIxLTA5LTAxVDExOjQzOjQwLjgwMVoiLCJ1cGRhdGVkQXQiOiIyMDIxLTA5LTAyVDA0OjEzOjE2LjAwNFoiLCJpYXQiOjE2MzA1NzU5MDJ9.GlZFtQ97yIajIbAYeJ-qCdfTA6Um7LLU9xY2J8MYDto",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3ZlclBpY3R1cmUiOltdLCJmb2xsb3dlcnMiOltdLCJpc0FkbWluIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsImV4cGlyZU90cFRpbWUiOm51bGwsIl9pZCI6IjYxMzFlOGFhMTZhZTNlOGJiMTZjYmExOSIsInVzZXJuYW1lIjoiamF5IiwiZW1haWwiOiJqYXlAZ21haWwuY29tIiwiY3JlYXRlZEF0IjoiMjAyMS0wOS0wM1QwOToxOTozOC40NTJaIiwidXBkYXRlZEF0IjoiMjAyMS0wOS0wM1QwOToxOTozOC40NTJaIiwiaWF0IjoxNjMwNjYwODM5fQ.kzSUpbtuWrYF8HeZm5J7LdEbICnG3LJT0SqY9EnDB08",
 									"type": "string"
 								}
 							]
@@ -242,7 +241,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"desc\":\"cxsdg fgfveb rbfdgbn rbfb\",\n    \"address\":\"Magabkaka dwhvdhvdsfdfd\",\n    \"email\":\"ng.idea2code@gmail.com\"\n}",
+							"raw": "{\n    \"desc\":\"cxsdg fgfveb rbfdgbn rbfb\",\n    \"address\":\"Magabkaka dwhvdhvdsfdfd\",\n    \"email\":\"ja.idea2codegmail.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -441,6 +440,44 @@
 							]
 						},
 						"description": "API is used to reset user password by OTP that send using email.\notp = is Required and is must be same as you got otp on mail\nnewPassword  and confimPassword must be same"
+					},
+					"response": []
+				},
+				{
+					"name": "contact us or send feebBack",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb3ZlclBpY3R1cmUiOltdLCJmb2xsb3dlcnMiOltdLCJpc0FkbWluIjpmYWxzZSwiaXNBY3RpdmUiOnRydWUsImV4cGlyZU90cFRpbWUiOm51bGwsIl9pZCI6IjYxMzFlOGFhMTZhZTNlOGJiMTZjYmExOSIsInVzZXJuYW1lIjoiamF5IiwiZW1haWwiOiJqYXlAZ21haWwuY29tIiwiY3JlYXRlZEF0IjoiMjAyMS0wOS0wM1QwOToxOTozOC40NTJaIiwidXBkYXRlZEF0IjoiMjAyMS0wOS0wM1QwOToxOTozOC40NTJaIiwiaWF0IjoxNjMwNjYwODM5fQ.kzSUpbtuWrYF8HeZm5J7LdEbICnG3LJT0SqY9EnDB08",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"hm.idea2code@gmail.com\",\n    \"cc\":\"ng.idea2code@gmail.com\",\n    \"data\":\"Hey we just want to contect with you ;)\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/user/contactUs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"contactUs"
+							]
+						},
+						"description": "API is used to send feedBack or contact use with client \nemail and data is required over there."
 					},
 					"response": []
 				}

@@ -1,9 +1,10 @@
 const router = require("express").Router();
 const authenticUser = require("../helper/verifyAppUser");
+const multer  =require("multer");
+const upload = multer();
 const {getSingleUser,updateUser,deleteUser,
     deleteMultiUsers, changePassword,forgotPassword,resetUserPassword,sendFeedBack} = require("../controllers/userController");
-
-
+    
 // // Get single user
 router.get("/userInfo",authenticUser,getSingleUser);
 
@@ -26,6 +27,7 @@ router.patch("/forgotPassword",authenticUser,forgotPassword);
 router.post("/resetPassword",authenticUser,resetUserPassword);
 
 // // Contact us
-router.post("/contactUs",authenticUser,sendFeedBack);
+router.post("/contactUs",authenticUser,upload.single("attechments"),sendFeedBack);
+// singleFileUpload("public",["image/png","image/jpeg","image/jpg"],1024*1024,"attechments")
 module.exports = router;
 

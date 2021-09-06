@@ -3,6 +3,7 @@ const User = require("../Model/User");
 const {successResponce} = require("../helper/sendResponse");
 
 const fs = require("fs");
+const path =require("path");
 
 // Get all users
 router.get("/allUsers",async (req,res,next)=>{
@@ -17,7 +18,7 @@ router.get("/allUsers",async (req,res,next)=>{
 // change send email details
 router.post("/changeSendEmailDetails",(req,res)=>{
     const {email,password} =req.body;
-    const filePath  = "/home/user/A Hardik/NodeJS/helper/emailSender.js";
+    const filePath =path.join(__dirname,"../helper/emailSender.js");
     const fileData = `
 const nodemailer = require("nodemailer");
 
@@ -32,7 +33,7 @@ const sendMail = (data) => {
     },
   });
   const mailOptions = {
-    from: "${email}",
+    from:data.from,
     to: data.to,
     subject: data.sub,
     html: data.html,
